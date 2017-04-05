@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Sent messages{% endblock %}
+
+{% block navbar_active %}
+      <ul class="nav navbar-nav">
+        <li><a href="/">Inbox</a></li>
+        <li><a href="new_message">New message</a></li>
+        <li class="active"><a href="/sent_messages">Sent<span class="sr-only">(current)</span></a></li>
+      </ul>
+{% endblock %}
+
+{% block main %}
+{% for message in messages_sent %}
+<div class=media">
+    <div class="media-body">
+        <h5 class="mt-0">To:</h5>
+        <h4 class="mt-0">{{ message.recipient }} ({{ message.timestamp }} UTC):</h4>
+        <h6 class="mt-0">{{ message.subject }}</h6>
+        <p>{{ message.content }}</p>
+    </div>
+</div>
+
+{%  endfor  %}
+{% endblock %}
